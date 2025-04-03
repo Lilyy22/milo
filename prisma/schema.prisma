@@ -1,0 +1,198 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  Superadmin
+  Developer
+  Designer
+  PM
+  BDM
+}
+
+model ClientData {
+  id         Int       @id @default(autoincrement())
+  clientName String
+  qa         String
+  bio        String
+  gender     String
+  createdAt  DateTime  @default(now())
+  stages     Stage[]
+  qaName     String?
+  qaFileId   String?
+  bioName    String?
+  bioFileId  String?
+  qas        QA[]
+  Website    Website[]
+}
+
+model QA {
+  id        Int        @id @default(autoincrement())
+  content   String
+  fileId    String?
+  fileName  String?
+  clientId  Int
+  client    ClientData @relation(fields: [clientId], references: [id])
+  createdAt DateTime   @default(now())
+}
+
+model User {
+  id                  String              @id @default(dbgenerated("concat('usr_', replace((gen_random_uuid())::text, '-'::text, ''::text))"))
+  email               String              @unique
+  name                String?
+  avatar              String?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  role                UserRole            @default(Developer) // Single role per user
+  hourlyRateHistories HourlyRateHistory[]
+  stageUsers          StageUsers[]
+}
+
+model Stage {
+  id                String       @id @default(uuid())
+  name              String
+  report            String?
+  docType           String
+  docUrl            String?
+  clientDataId      Int
+  status            String?
+  project           ClientData   @relation(fields: [clientDataId], references: [id])
+  stageUsers        StageUsers[]
+  pictoryJobId      String?
+  videoUrl          String?
+  videoErrorMessage String?
+  createdAt         DateTime     @default(now())
+}
+
+model HourlyRateHistory {
+  id            String   @id @default(uuid())
+  rate          Float
+  effectiveDate DateTime
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model StageUsers {
+  stageId String
+  userId  String
+  stage   Stage  @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [userId], references: [id])
+
+  @@id([stageId, userId])
+}
+
+enum MessageDirection {
+  INCOMING
+  OUTGOING
+  UNKNOWN
+}
+
+model UpworkRooms {
+  roomId          String          @id
+  roomName        String
+  TTR             Int             @default(0)
+  roomType        Int
+  roomCreated     BigInt          @default(0)
+  topic           String
+  recentTimestamp BigInt
+  fullRoomObject  Json
+  createdDate     DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  stories         UpworkStories[] @relation("RoomStories")
+  stage           String          @default("unknown")
+  hubspotDealId   String?
+}
+
+model UpworkStories {
+  roomId                String
+  storyId               String            @id
+  created               BigInt
+  markedAsAbusive       Int
+  message               String
+  messageId             String
+  modified              Int
+  updated               BigInt
+  userId                String
+  userModifiedTimestamp BigInt
+  fullStoryObject       Json
+  createdDate           DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  author                String?
+  direction             MessageDirection?
+  room                  UpworkRooms       @relation(fields: [roomId], references: [roomId], name: "RoomStories")
+}
+
+model UpworkRequestsLog {
+  id          Int      @id @default(autoincrement())
+  createdDate DateTime @default(now())
+  duration    Int
+  url         String
+}
+
+model UpworkOrg {
+  id      String   @id
+  isOur   Boolean
+  created DateTime @default(now())
+
+  users UpworkUser[] @relation("Organization")
+}
+
+model UpworkUser {
+  id       String   @id
+  orgId    String
+  name     String
+  photoUrl String?
+  created  DateTime @default(now())
+
+  organization UpworkOrg @relation(fields: [orgId], references: [id], name: "Organization")
+}
+
+
+model Website {
+  id       Int        @id @default(autoincrement())
+  clientId Int        @unique 
+  client   ClientData @relation(fields: [clientId], references: [id])
+
+  projectName String
+
+  domain      String @default("")
+  siteName    String 
+  description String
+
+  pages String[] @default(["/home", "/about", "/blog", "/news", "/contact"])
+
+  template TemplateType @default(BASIC) 
+
+  googleAnalyticsId String @default("")
+  searchConsoleId   String @default("")
+
+  homePageContent Json?
+  aboutPageContent Json?
+  blogPageContent Json?
+  newsPageContent Json?
+  contactPageContent Json?
+
+  socialLinks Json
+  assets Json
+
+  githubRepositoryUrl String @default("")
+  
+  vercelProjectId   String @default("")
+  vercelDeploymentId String @default("")
+
+  isPublished Boolean   @default(false)
+  lastBuildAt DateTime @default(now())
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum TemplateType {
+  BASIC
+  ELITE
+} 

@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: dev-db
+    ports:
+    - "5432:5432"

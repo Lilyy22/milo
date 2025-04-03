@@ -1,0 +1,37 @@
+
+node_modules
+
+.idea*
+.idea/*
+
+# Node modules
+node_modules/
+
+# Build outputs
+.next/
+out/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+
+# # Prisma migrations (if you prefer not to track migrations)
+# prisma/migrations/
+
+# Local database files
+*.db
+
+# macOS Finder metadata
+.DS_Store
+
+# Vim swap files
+*.swp
+
+# Next.js build output
+.next/
+out/

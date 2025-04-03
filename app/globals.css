@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button:disabled,
+button[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}

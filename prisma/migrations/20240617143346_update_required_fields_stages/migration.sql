@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Stage" ALTER COLUMN "report" DROP NOT NULL,
+ALTER COLUMN "factFinished" DROP NOT NULL;
