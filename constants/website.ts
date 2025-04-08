@@ -4,7 +4,7 @@ import { CreateWebsiteDataType } from "@/schemas/create-website";
 import { UpdateWebsiteDataType } from "@/schemas/update-website";
 
 export const AI_PROMPTS = {
-    MAIN: `You are an expert content strategist specializing in personal brand development and professional website content creation. Your role is to generate precise, structured content for personal professional websites.
+  MAIN: `You are an expert content strategist specializing in personal brand development and professional website content creation. Your role is to generate precise, structured content for personal professional websites.
 
 Core Instructions:
 - Generate content exclusively in the JSON structured format according to the provided schema
@@ -19,7 +19,7 @@ Core Instructions:
 - Adapt writing style to match the individual's industry and professional context
 
 You will receive specific page instructions below, and a biography in the user message. Your goal is to transform this information into well-structured, professional website content that effectively positions the individual as an authority in their field.`,
-    HOME_PAGE: `You need to generate engaging home page content for a personal brand website.
+  HOME_PAGE: `You need to generate engaging home page content for a personal brand website.
 
 You will be provided with the individual's professional biography in the user message.
 
@@ -31,7 +31,7 @@ Your task:
 - Make the expertise points specific and relevant to the person's field
 - Use professional, confident language appropriate for a personal brand website
 - Keep tone authoritative but approachable`,
-    ABOUT_PAGE: `You need to generate detailed about page content for a personal brand website.
+  ABOUT_PAGE: `You need to generate detailed about page content for a personal brand website.
 
 You will be provided with the individual's professional biography in the user message.
 
@@ -49,7 +49,7 @@ Your task:
 - End with a compelling call-to-action in the footer
 - Maintain a professional yet engaging tone throughout`,
 
-    BLOG_PAGE: `You need to generate blog page content relevant to the individual's expertise.
+  BLOG_PAGE: `You need to generate blog page content relevant to the individual's expertise.
 
 You will be provided with the individual's professional biography in the user message.
 
@@ -58,7 +58,7 @@ Your task:
 - Focus on topics that demonstrate their expertise and knowledge
 - Generate content that positions them as an authority in their industry`,
 
-    NEWS_PAGE: `You need to generate services/news page content based on the individual's expertise.
+  NEWS_PAGE: `You need to generate services/news page content based on the individual's expertise.
 You will be provided with the individual's professional biography in the user message.
 
 Your task:
@@ -69,133 +69,141 @@ Your task:
 };
 
 export const PAGES_NAVIGATION = {
-    "/home": {
-        label: "Home",
-        value: "/home",
-        isRequired: true,
-    },
-    "/about": {
-        label: "About",
-        value: "/about",
-        isRequired: true,
-    },
-    "/blog": {
-        label: "Blog",
-        value: "/blog",
-        isRequired: false,
-    },
-    "/news": {
-        label: "In the News",
-        value: "/news",
-        isRequired: false,
-    },
-    "/contact": {
-        label: "Contact",
-        value: "/contact",
-        isRequired: false,
-    },
+  "/home": {
+    label: "Home",
+    value: "/home",
+    isRequired: true,
+  },
+  "/about": {
+    label: "About",
+    value: "/about",
+    isRequired: true,
+  },
+  "/blog": {
+    label: "Blog",
+    value: "/blog",
+    isRequired: false,
+  },
+  "/news": {
+    label: "In the News",
+    value: "/news",
+    isRequired: false,
+  },
+  "/contact": {
+    label: "Contact",
+    value: "/contact",
+    isRequired: false,
+  },
 };
 
 export const DEFAULT_WEBSITE_CONTENT = {
-    siteName: "",
-    description: "",
+  siteName: "",
+  description: "",
 
-    pages: ["/home", "/about"],
-    template: TemplateType.BASIC,
+  pages: ["/home", "/about"],
+  template: TemplateType.BASIC,
 
-    googleAnalyticsId: "",
-    searchConsoleId: "",
+  googleAnalyticsId: "",
+  searchConsoleId: "",
 
-    homePageContent: {
-        title: "",
-        mainBlock: {
-            title: "",
-            text: "",
-        },
-        keysBlock: {
-            title: "",
-            items: [""],
-            footer: "",
-        },
-        footer: "",
+  homePageContent: {
+    title: "",
+    heroBlock: {
+      title: "",
+      subtitle: "",
     },
-    aboutPageContent: {
-        title: "",
-        mainBlock: {
-            title: "",
-            text: "",
-        },
-        keysBlock: {
-            title: "",
-            items: [
-                {
-                    name: "",
-                    description: "",
-                },
-            ],
-            footer: "",
-        },
-        footer: "",
+    mainBlock: {
+      title: "",
+      text: "",
     },
-    blogPageContent: undefined,
-    newsPageContent: undefined,
-
-    githubRepositoryUrl: "",
-
-    socialLinks: {
-        x: "https://x.com/",
-        facebook: "https://facebook.com/",
-        linkedin: "https://www.linkedin.com/",
+    keysBlock: {
+      title: "",
+      items: [""],
+      footer: "",
     },
-    assets: {},
+    footer: "",
+  },
+  aboutPageContent: {
+    title: "",
+    mainBlock: {
+      title: "",
+      text: "",
+    },
+    keysBlock: {
+      title: "",
+      items: [
+        {
+          name: "",
+          description: "",
+        },
+      ],
+      footer: "",
+    },
+    footer: "",
+  },
+  blogPageContent: undefined,
+  newsPageContent: undefined,
 
-    isPublished: false,
+  githubRepositoryUrl: "",
+
+  socialLinks: {
+    x: "https://x.com/",
+    facebook: "https://facebook.com/",
+    linkedin: "https://www.linkedin.com/",
+  },
+  assets: {},
+
+  isPublished: false,
 };
 
 export const SOCIAL_LINKS = [
-    {
-        id: "x",
-        name: "X",
-        url: "https://x.com/",
-        alt: "X profile",
-    },
-    {
-        id: "facebook",
-        name: "Facebook",
-        url: "https://facebook.com/",
-        alt: "Facebook page",
-    },
-    {
-        id: "linkedin",
-        name: "LinkedIn",
-        url: "https://linkedin.com/",
-        alt: "LinkedIn profile",
-    },
+  {
+    id: "x",
+    name: "X",
+    url: "https://x.com/",
+    alt: "X profile",
+  },
+  {
+    id: "facebook",
+    name: "Facebook",
+    url: "https://facebook.com/",
+    alt: "Facebook page",
+  },
+  {
+    id: "linkedin",
+    name: "LinkedIn",
+    url: "https://linkedin.com/",
+    alt: "LinkedIn profile",
+  },
 ];
 
-export const getDefaultCreateWebsiteData = (clientData: ClientData): CreateWebsiteDataType => {
-    return {
-        ...DEFAULT_WEBSITE_CONTENT,
-        siteName: clientData.clientName,
-        description: `This is a website about ${clientData.clientName}`,
-    };
+export const getDefaultCreateWebsiteData = (
+  clientData: ClientData
+): CreateWebsiteDataType => {
+  return {
+    ...DEFAULT_WEBSITE_CONTENT,
+    siteName: clientData.clientName,
+    description: `This is a website about ${clientData.clientName}`,
+  };
 };
 
-export const getDefaultUpdateWebsiteData = (websiteData: WebsiteData): UpdateWebsiteDataType => {
-    return {
-        siteName: websiteData.siteName,
-        description: websiteData.description,
-        pages: websiteData.pages,
-        template: websiteData.template,
-        googleAnalyticsId: websiteData.googleAnalyticsId,
-        searchConsoleId: websiteData.searchConsoleId,
-        homePageContent: websiteData.homePageContent,
-        aboutPageContent: websiteData.aboutPageContent,
-        blogPageContent: websiteData.blogPageContent,
-        newsPageContent: websiteData.newsPageContent,
-        contactPageContent: websiteData.contactPageContent,
-        socialLinks: websiteData.socialLinks,
-        assets: websiteData.assets,
-        isPublished: websiteData.isPublished,
-    };
+export const getDefaultUpdateWebsiteData = (
+  websiteData: WebsiteData
+): UpdateWebsiteDataType => {
+  return {
+    siteName: websiteData.siteName,
+    description: websiteData.description,
+    pages: websiteData.pages,
+    template: websiteData.template,
+    googleAnalyticsId: websiteData.googleAnalyticsId,
+    searchConsoleId: websiteData.searchConsoleId,
+    homePageContent: websiteData.homePageContent,
+    aboutPageContent: websiteData.aboutPageContent,
+    blogPageContent: websiteData.blogPageContent,
+    newsPageContent: websiteData.newsPageContent,
+    contactPageContent: websiteData.contactPageContent,
+    socialLinks: websiteData.socialLinks,
+    assets: websiteData.assets,
+    isPublished: websiteData.isPublished,
+  };
 };

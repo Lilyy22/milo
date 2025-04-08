@@ -40,6 +40,7 @@
     "formdata-node": "^6.0.3",
     "fs-extra": "^11.3.0",
     "googleapis": "^143.0.0",
+    "lucide-react": "^0.487.0",
     "mammoth": "^1.8.0",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.45",
