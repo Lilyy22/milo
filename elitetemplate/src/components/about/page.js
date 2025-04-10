@@ -1,22 +1,27 @@
-import { MainBlock } from "./main-block";
-import { InfoBlock } from "./info-block";
-import { KeysBlock } from "./keys-block";
-import { Heading } from "@/components/heading";
-import { ABOUT_PAGE_CONTENT } from "@/constants";
+import Navbar from "@/components/navbar";
+import HeroSection from "@/components/hero-section";
+import WelcomeSection from "@/components/welcome-section";
+import ServicesSection from "@/components/services-section";
+import WhyChooseSection from "@/components/why-choose-section";
+import ImpactSection from "@/components/impact-section";
+import CallToAction from "@/components/call-to-action";
+import Footer from "@/components/footer";
+import { HOME_PAGE_CONTENT } from "@/constants";
 
-export default function About() {
-    const { title, mainBlock, keysBlock, footer } = ABOUT_PAGE_CONTENT;
+export default function Home() {
+  const { heroBlock, mainBlock, keysBlock, whyChooseBlock, statBlock } =
+    HOME_PAGE_CONTENT;
 
-    return (
-        <section className="w-full flex flex-col md:gap-[156px] gap-[80px]">
-            <MainBlock title={title} />
-            <InfoBlock block={mainBlock} />
-            <KeysBlock block={keysBlock} />
-            <div className="max-w-[856px] w-full mx-auto">
-                <Heading type="h2" className="md:text-start text-center">
-                    {footer}
-                </Heading>
-            </div>
-        </section>
-    );
+  return (
+    <main className="min-h-screen bg-gray-50">
+      <Navbar />
+      <HeroSection heroBlock={heroBlock} />
+      <WelcomeSection mainBlock={mainBlock} />
+      <ServicesSection keysBlock={keysBlock} />
+      <WhyChooseSection whyChooseBlock={whyChooseBlock} />
+      <ImpactSection statBlock={statBlock} />
+      <CallToAction text="Take The First Step Towards Better Health" />
+      <Footer />
+    </main>
+  );
 }

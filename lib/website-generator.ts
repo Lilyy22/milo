@@ -139,7 +139,7 @@ export class WebsiteGenerator {
       await this.createPages(websiteData.pages, createdWebsiteDir);
     }
 
-    console.log(`Website generated successfully at: ${createdWebsiteDir}`);
+    // console.log(`Website generated successfully at: ${createdWebsiteDir}`);
     return {
       newWebsiteDir: createdWebsiteDir,
       newConstantsPath: tempConstantsPath,

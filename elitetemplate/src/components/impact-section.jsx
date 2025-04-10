@@ -5,7 +5,7 @@ export default function ImpactSection({ statBlock = {} }) {
 
   return (
     <section className="bg-white py-16">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <h2 className="mb-12 text-center text-3xl font-bold text-[#0a1a33]">
           {title}
         </h2>

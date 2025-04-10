@@ -62,10 +62,6 @@ export async function PUT(req: NextRequest) {
       repositoryUrl: isWebsiteExists.githubRepositoryUrl,
     });
 
-    // Log the contents of createdWebsiteDir after copying
-    console.log("Contents of createdWebsiteDir after createPages ooooo:");
-    console.log(await fs.readdir(newWebsiteDir, { withFileTypes: true }));
-
     await prisma.website.update({
       where: { id: isWebsiteExists.id },
       data: {
@@ -93,7 +89,7 @@ export async function PUT(req: NextRequest) {
         console.log("Triggering Vercel deployment...");
         await vercelClient.deployToVercel({
           repositoryUrl: isWebsiteExists.githubRepositoryUrl,
-          projectName: isWebsiteExists.vercelProjectId,
+          projectName: isWebsiteExists.vercelProjectId.toLowerCase(),
         });
         console.log("Vercel deployment triggered successfully");
       } catch (error) {

@@ -7,7 +7,7 @@ import CallToAction from "@/components/call-to-action";
 import Footer from "@/components/footer";
 import { HOME_PAGE_CONTENT } from "@/constants";
 
-export default function Home() {
+export default function About() {
   const {
     heroBlock = {},
     mainBlock = {},
@@ -20,10 +20,10 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50">
       <HeroSection heroBlock={heroBlock} />
       <WelcomeSection mainBlock={mainBlock} />
+      <ImpactSection statBlock={statBlock} />
       <ServicesSection keysBlock={keysBlock} />
       <WhyChooseSection whyChooseBlock={whyChooseBlock} />
-      <ImpactSection statBlock={statBlock} />
-      <CallToAction />
+      <CallToAction text="Schedule Your Appointment Today" />
       <Footer />
     </main>
   );
