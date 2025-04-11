@@ -31,7 +31,7 @@ export default function HeroSection({ heroBlock = {} }) {
       </div>
 
       {/* Your Health, My Priority Banner */}
-      <div className="w-full bg-[#2d3e50]/90 bg-blur py-12 text-center -mt-44 z-20 relative">
+      <div className="w-full bg-[#2d3e50]/90 bg-blur py-12 text-center -mt-48 z-20 relative">
         <h2 className="text-2xl font-medium text-white md:text-3xl">
           Your Health, My Priority
         </h2>

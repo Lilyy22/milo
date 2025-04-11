@@ -2,11 +2,11 @@ export default function ServicesSection({ keysBlock = {} }) {
   const { title = "", items = [] } = keysBlock;
 
   return (
-    <section className="relative">
+    <section className="relative my-12">
       {/* Blue rectangle top-left */}
-      <div className="absolute -top-8 left-12 h-28 w-48 bg-[#B0DAF1] opacity-50 md:w-[40%]"></div>
+      <div className="absolute -top-8 left-1/12 h-28 w-48 bg-[#B0DAF1] opacity-50 md:w-[30%]"></div>
 
-      <section className="relative bg-gray-100/85 py-16 z-10 bg-blur">
+      <section className="relative bg-gray-100/40 py-16 z-10 backdrop-blur-xl">
         <div className="px-4">
           <div className="mx-auto max-w-3xl">
             <div className="mb-12">
@@ -26,7 +26,7 @@ export default function ServicesSection({ keysBlock = {} }) {
         </div>
       </section>
       {/* Blue rectangle bottom-right */}
-      <div className="absolute -bottom-12 right-12 h-28 w-64 bg-[#B0DAF1] opacity-50 md:w-[40%]"></div>
+      <div className="absolute -bottom-12 right-1/12 h-28 w-64 bg-[#B0DAF1] opacity-50 md:w-[30%]"></div>
     </section>
   );
 }

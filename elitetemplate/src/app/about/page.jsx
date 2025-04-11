@@ -4,7 +4,7 @@ import ServicesSection from "@/components/services-section";
 import WhyChooseSection from "@/components/why-choose-section";
 import ImpactSection from "@/components/impact-section";
 import CallToAction from "@/components/call-to-action";
-import Footer from "@/components/footer";
+import { HOME_PAGE_CONTENT_DEF } from "@/constants/default";
 import { HOME_PAGE_CONTENT } from "@/constants";
 
 export default function About() {
@@ -16,15 +16,21 @@ export default function About() {
     statBlock = {},
   } = HOME_PAGE_CONTENT;
 
+  // Destructure and alias variables from HOME_PAGE_CONTENT_DEF
+  const {
+    heroBlock: heroBlockDef = {},
+    whyChooseBlock: whyChooseBlockDef = {},
+    statBlock: statBlockDef = {},
+  } = HOME_PAGE_CONTENT_DEF;
+
   return (
-    <main className="min-h-screen bg-gray-50">
-      <HeroSection heroBlock={heroBlock} />
+    <main className="min-h-screen">
+      <HeroSection heroBlock={heroBlock ?? heroBlockDef} />
       <WelcomeSection mainBlock={mainBlock} />
-      <ImpactSection statBlock={statBlock} />
       <ServicesSection keysBlock={keysBlock} />
-      <WhyChooseSection whyChooseBlock={whyChooseBlock} />
-      <CallToAction text="Schedule Your Appointment Today" />
-      <Footer />
+      <WhyChooseSection whyChooseBlock={whyChooseBlock ?? whyChooseBlockDef} />
+      <ImpactSection statBlock={statBlock ?? statBlockDef} />
+      <CallToAction />
     </main>
   );
 }

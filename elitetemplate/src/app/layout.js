@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="font-sans">
         <Navbar />
-        <main className="container mx-auto">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
       {googleAnalytics}

@@ -87,7 +87,7 @@ export async function PUT(req: NextRequest) {
     if (isWebsiteExists.vercelProjectId) {
       try {
         console.log("Triggering Vercel deployment...");
-        await vercelClient.deployToVercel({
+       const deployment = await vercelClient.deployToVercel({
           repositoryUrl: isWebsiteExists.githubRepositoryUrl,
           projectName: isWebsiteExists.vercelProjectId.toLowerCase(),
         });
