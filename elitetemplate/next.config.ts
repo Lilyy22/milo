@@ -13,7 +13,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "drgalen.org",
+        hostname: "s3-alpha-sig.figma.com",
         port: "", // Leave empty for standard HTTPS
         pathname: "/**", // Allow all paths under the domain
       },

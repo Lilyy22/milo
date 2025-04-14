@@ -87,41 +87,26 @@ export const HOME_PAGE_CONTENT = {
 
 export const ABOUT_PAGE_CONTENT = {
   title: "Telecommunications Leader",
+  heroBlock: {
+    title: "Redefining Excellence in Healthcare",
+    subtitle: "With over a decade of experience and a passion for innovation.",
+  },
   mainBlock: {
-    title: "More About Sean Edwards",
-    text: "Sean Edwards is the President of Rittenhouse Communications Group, a leading provider of integrated technology solutions in the Mid-Atlantic region. With a career spanning over two decades, Sean has established himself as a visionary in telecommunications, VoIP, and technology integration. His expertise extends to IP surveillance, enterprise security systems, and cloud technology deployments. Sean's journey began in sales and marketing, leveraging his skills to transition into the telecommunications industry in 2001. A passionate advocate for Philadelphia, Sean is deeply involved in community initiatives, serving on the advisory board of the SS United States Conservancy and as a board member of the Economy League of Philadelphia. His commitment to the city is further demonstrated through his philanthropic efforts, supporting institutions that enhance the arts, history, and safety of Philadelphia. Sean resides in Bella Vista with his wife, Kelly, and enjoys cooking, a passion he cultivated during his time in culinary arts.",
+    title: "Who is Dr. Jonathan Thomson?",
+    text: "Dr. Jonathan Thomson is a highly respected [specialization] with over 15 years of experience. His dedication to excellence and innovation has made him a leader in the field, providing life-changing treatments to patients worldwide.",
   },
-  keysBlock: {
-    title: "Core Values",
+  missionBlock: {
+    title: "Mission & Philosophy",
+    text: "At Dr. Jonathan Thomson, we believe in patient-centered care, where every individual receives personalized attention and the highest quality treatment.",
+  },
+  whyChooseBlock: {
+    title: "Why Choose Dr. Jonathan Thomson?",
     items: [
-      {
-        name: "Innovation",
-        description:
-          "Pioneering cutting-edge technology solutions to meet the evolving needs of clients.",
-      },
-      {
-        name: "Community Engagement",
-        description:
-          "Actively participating in initiatives that enhance the quality of life in Philadelphia.",
-      },
-      {
-        name: "Integrity",
-        description:
-          "Upholding the highest ethical standards in all business and community endeavors.",
-      },
-      {
-        name: "Collaboration",
-        description:
-          "Fostering partnerships that drive mutual growth and success.",
-      },
-      {
-        name: "Philanthropy",
-        description:
-          "Contributing to causes that support the arts, history, and safety of the community.",
-      },
+      "'Voted Most Trusted Doctor by Patients'",
+      "'Innovator in Medicine' Certificate",
+      "'Best Doctor of the Year' Award",
+      "'Innovator in Medicine' Certificate",
+      "'Voted Most Trusted Doctor by Patients'",
     ],
-    footer:
-      "Sean is also involved in speaking engagements, mentoring emerging professionals, and writing on technology trends.",
   },
-  footer: "Connect with Sean!",
 };

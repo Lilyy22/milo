@@ -62,6 +62,20 @@ export async function PUT(req: NextRequest) {
       repositoryUrl: isWebsiteExists.githubRepositoryUrl,
     });
 
+    let deployment;
+    if (isWebsiteExists.vercelProjectId) {
+      try {
+        console.log("Triggering Vercel deployment...");
+        deployment = await vercelClient.deployToVercel({
+          repositoryUrl: isWebsiteExists.githubRepositoryUrl,
+          projectName: isWebsiteExists.vercelProjectId.toLowerCase(),
+        });
+        console.log("Vercel deployment triggered successfully");
+      } catch (error) {
+        console.error("Failed to trigger Vercel deployment:", error);
+      }
+    }
+
     await prisma.website.update({
       where: { id: isWebsiteExists.id },
       data: {
@@ -77,6 +91,8 @@ export async function PUT(req: NextRequest) {
         newsPageContent: websiteData.newsPageContent || Prisma.JsonNull,
         contactPageContent: websiteData.contactPageContent || Prisma.JsonNull,
         socialLinks: websiteData.socialLinks || {},
+        vercelProjectId:
+          deployment?.vercelProjectId ?? isWebsiteExists.vercelProjectId,
         assets: websiteData.assets || {},
         lastBuildAt: new Date(),
       },
@@ -84,18 +100,6 @@ export async function PUT(req: NextRequest) {
     filesToCleanup.websitePath = newWebsiteDir;
     filesToCleanup.constantsPath = newConstantsPath;
     filesToCleanup.layoutPath = newLayoutPath;
-    if (isWebsiteExists.vercelProjectId) {
-      try {
-        console.log("Triggering Vercel deployment...");
-       const deployment = await vercelClient.deployToVercel({
-          repositoryUrl: isWebsiteExists.githubRepositoryUrl,
-          projectName: isWebsiteExists.vercelProjectId.toLowerCase(),
-        });
-        console.log("Vercel deployment triggered successfully");
-      } catch (error) {
-        console.error("Failed to trigger Vercel deployment:", error);
-      }
-    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

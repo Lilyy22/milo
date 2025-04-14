@@ -6,6 +6,7 @@ import ImpactSection from "@/components/impact-section";
 import CallToAction from "@/components/call-to-action";
 import { HOME_PAGE_CONTENT } from "@/constants";
 import { HOME_PAGE_CONTENT_DEF } from "@/constants/default";
+import { IsEmptyObject } from "@/lib/utils";
 
 export default function Home() {
   const {
@@ -25,12 +26,20 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <HeroSection heroBlock={heroBlock ?? heroBlockDef} />
+      <HeroSection
+        heroBlock={IsEmptyObject(heroBlock) ? heroBlockDef : heroBlock}
+      />
       <WelcomeSection mainBlock={mainBlock} />
+      <ImpactSection
+        statBlock={IsEmptyObject(statBlock) ? statBlockDef : statBlock}
+      />
       <ServicesSection keysBlock={keysBlock} />
-      <WhyChooseSection whyChooseBlock={whyChooseBlock ?? whyChooseBlockDef} />
-      <ImpactSection statBlock={statBlock ?? statBlockDef} />
-      <CallToAction />
+      <WhyChooseSection
+        whyChooseBlock={
+          IsEmptyObject(whyChooseBlock) ? whyChooseBlockDef : whyChooseBlock
+        }
+      />
+      <CallToAction text="Take the first step towards better health" />
     </main>
   );
 }

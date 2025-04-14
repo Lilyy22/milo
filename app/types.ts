@@ -63,6 +63,7 @@ export interface Project {
   stages: Stage[];
   timeBilled: TimeBilled[];
   invoices: Invoice[];
+  Website: WebsiteData[];
 }
 
 export interface IProjectWithStages extends Project {
