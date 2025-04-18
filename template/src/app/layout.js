@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-{
-  content;
-}
+// {
+//   content;
+// }
 
 export default function RootLayout({ children }) {
   return (
