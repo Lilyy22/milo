@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/rest";
-import simpleGit, { SimpleGit } from "simple-git";
+import simpleGit, { CleanOptions, ResetMode, SimpleGit } from "simple-git";
 import fs from "fs-extra";
 import path from "path";
 import { UpdateWebsiteDataType } from "@/schemas/update-website";
@@ -175,6 +175,82 @@ class GitHubClient {
     );
   }
 
+  // public async updateRepository({
+  //   websiteDir,
+  //   repositoryUrl,
+  // }: {
+  //   websiteDir: string;
+  //   repositoryUrl: string;
+  // }) {
+  //   try {
+  //     // Create temporary directory for git operations
+  //     const tempGitDir = path.join(process.cwd(), ".temp-git-" + Date.now());
+  //     await fs.ensureDir(tempGitDir);
+
+  //     try {
+  //       // Clone the repository
+  //       const repoUrlWithToken = repositoryUrl.replace(
+  //         "https://",
+  //         `https://x-access-token:${this.githubToken}@`
+  //       );
+  //       const git = simpleGit(tempGitDir);
+  //       await git.clone(repoUrlWithToken, ".");
+
+  //       // Ensure src directory exists
+  //       const srcDir = path.join(tempGitDir, "src");
+  //       await fs.ensureDir(srcDir);
+
+  //       // Remove entire src/app and src/constants directories
+  //       // await fs.remove(path.join(srcDir, "app"));
+  //       // await fs.remove(path.join(srcDir, "constants"));
+  //       await fs.remove(srcDir);
+
+  //       // Copy new directories from generated website
+  //       await fs.copy(websiteDir, tempGitDir);
+  //       // await fs.copy(
+  //       //   path.join(websiteDir, "src", "constants"),
+  //       //   path.join(srcDir, "constants")
+  //       // );
+  //       // await fs.copy(
+  //       //   path.join(websiteDir, "src", "app"),
+  //       //   path.join(srcDir, "app")
+  //       // );
+
+  //       // Git operations
+  //       await this.initGit(git);
+
+  //       // Stage all changes, including deletions
+  //       await git.add(".");
+
+  //       // Check if there are any changes to commit
+  //       const status = await git.status();
+
+  //       if (!status.isClean()) {
+  //         await git.commit("Update website content and configuration");
+  //         await git.push("origin", this.DEFAULT_BRANCH);
+  //         console.log(
+  //           `Successfully updated src/app and src/constants in repository ${repositoryUrl}`
+  //         );
+  //       } else {
+  //         console.log("No changes detected in the repository");
+  //       }
+
+  //       return repositoryUrl;
+  //     } finally {
+  //       if (await fs.pathExists(tempGitDir)) {
+  //         await fs.remove(tempGitDir);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating GitHub repository:", error);
+  //     throw new Error(
+  //       `Failed to update GitHub repository: ${
+  //         error instanceof Error ? error.message : "Unknown error"
+  //       }`
+  //     );
+  //   }
+  // }
+
   public async updateRepository({
     websiteDir,
     repositoryUrl,
@@ -196,26 +272,25 @@ class GitHubClient {
         const git = simpleGit(tempGitDir);
         await git.clone(repoUrlWithToken, ".");
 
-        // Ensure src directory exists
-        const srcDir = path.join(tempGitDir, "src");
-        await fs.ensureDir(srcDir);
+        // Clean up untracked files and directories
+        await git.clean([CleanOptions.FORCE, CleanOptions.RECURSIVE]);
 
-        // Remove entire src/app and src/constants directories
-        await fs.remove(path.join(srcDir, "app"));
-        await fs.remove(path.join(srcDir, "constants"));
+        // Reset the branch to the latest commit to discard any changes
+        await git.reset(ResetMode.HARD);
 
-        // Copy new directories from generated website
+        // Remove all files except .git directory
+        const allFiles = await fs.readdir(tempGitDir);
+        for (const file of allFiles) {
+          if (!(file === ".git" || file.startsWith(".git/"))) {
+            const filePath = path.join(tempGitDir, file);
+            await fs.remove(filePath);
+          }
+        }
+
+        // Copy new template files
         await fs.copy(websiteDir, tempGitDir);
-        await fs.copy(
-          path.join(websiteDir, "src", "constants"),
-          path.join(srcDir, "constants")
-        );
-        await fs.copy(
-          path.join(websiteDir, "src", "app"),
-          path.join(srcDir, "app")
-        );
 
-        // Git operations
+        // Reinitialize Git and stage all changes
         await this.initGit(git);
 
         // Stage all changes, including deletions
@@ -223,12 +298,11 @@ class GitHubClient {
 
         // Check if there are any changes to commit
         const status = await git.status();
-
         if (!status.isClean()) {
           await git.commit("Update website content and configuration");
-          await git.push("origin", this.DEFAULT_BRANCH);
+          await git.push("origin", this.DEFAULT_BRANCH, ["--force"]); // Force push to overwrite history
           console.log(
-            `Successfully updated src/app and src/constants in repository ${repositoryUrl}`
+            `Successfully updated repository ${repositoryUrl} with new template`
           );
         } else {
           console.log("No changes detected in the repository");
@@ -236,6 +310,7 @@ class GitHubClient {
 
         return repositoryUrl;
       } finally {
+        // Clean up temporary directory
         if (await fs.pathExists(tempGitDir)) {
           await fs.remove(tempGitDir);
         }
@@ -289,8 +364,6 @@ class GitHubClient {
   }
 }
 
-export default new GitHubClient(process.env.GITHUB_TOKEN);
-
 type UpdateRepositoryParams = {
   websiteData: UpdateWebsiteDataType;
   websiteId: string;
@@ -312,3 +385,4 @@ type CheckFileNeedsUpdateParams = {
   filePath: string;
   newContent: string;
 };
+export default new GitHubClient(process.env.GITHUB_TOKEN);

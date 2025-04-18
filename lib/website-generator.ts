@@ -20,7 +20,7 @@ const pageConfigs: Record<string, PageConfig> = {
   "/news": { name: "News", route: "news" },
 };
 
-export class WebsiteGenerator {
+class WebsiteGenerator {
   constructor() {}
 
   async createConstantsFile(
