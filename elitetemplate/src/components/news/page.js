@@ -14,7 +14,7 @@ export default function News() {
     };
     return (
         <section className="flex flex-col md:gap-[40px] gap-[48px]">
-            <Heading type="h2" className="md:text-start text-center">
+            <Heading type="h2" className="text-center md:text-start">
                 Blog
             </Heading>
             <div className="flex items-center relative min-h-[500px] h-full">
@@ -23,14 +23,14 @@ export default function News() {
                 <Heading type="name" className="absolute top-0 left-[48px]">
                     {name.split(" ")[0]}
                 </Heading>
-                <Heading type="name" className="absolute bottom-0 left-1/2 -translate-x-1/2">
+                <Heading type="name" className="absolute bottom-0 -translate-x-1/2 left-1/2">
                     {name.split(" ")[1]}
                 </Heading>
 
                 <div className="absolute z-50 lg:top-[100px] lg:right-[32px] top-[20px] right-[12px] flex items-end justify-center">
                     <p className="text-gray lg:text-[20px] text-[8px] font-normal leading-[130%] lg:max-w-[410px] max-w-[110px] text-center">
                         Leadership in healthcare demands a delicate balance between compassion, excellence, and innovation. <br />
-                        Over the years, I've learned that the most effective leaders are those who serve their teams with humility and
+                        Over the years, I&apos;ve learned that the most effective leaders are those who serve their teams with humility and
                         grace.
                     </p>
                 </div>
@@ -39,7 +39,7 @@ export default function News() {
                 <Heading type="h3" className="md:text-start text-center !text-[24px]">
                     Latest News
                 </Heading>
-                <div className="md:flex hidden">
+                <div className="hidden md:flex">
                     <BigItem text={text} />
                 </div>
                 <div className="md:hidden mb-[80px]">

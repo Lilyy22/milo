@@ -1,4 +1,4 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
+// import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <Footer />
       </body>
-      {googleAnalytics}
+      {/* {googleAnalytics} */}
     </html>
   );
 }

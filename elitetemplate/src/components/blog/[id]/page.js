@@ -20,7 +20,7 @@ const BlogPostContent = async ({ id }) => {
 
                     <div className="text-[17px] font-normal leading-[140%]">
                         <p>
-                            In today's fast-paced world, legal matters can often feel overwhelming and complex. Whether handling business
+                            In today&apos;s fast-paced world, legal matters can often feel overwhelming and complex. Whether handling business
                             disputes, real estate transactions, or personal injury claims, the right legal team can make all the difference.
                             A client-centered approach in legal services ensures that individuals and businesses receive tailored guidance,
                             transparent communication, and dedicated advocacy.
@@ -29,8 +29,8 @@ const BlogPostContent = async ({ id }) => {
                         <p>Personalized Legal Solutions</p>
                         <br />
                         <p>
-                            Each client's situation is unique, and a one-size-fits-all strategy rarely leads to the best outcome. A firm
-                            that prioritizes personalized legal solutions takes the time to understand clients' specific needs and concerns.
+                            Each client&apos;s situation is unique, and a one-size-fits-all strategy rarely leads to the best outcome. A firm
+                            that prioritizes personalized legal solutions takes the time to understand clients&apos; specific needs and concerns.
                             This allows for customized strategies that align with their objectives, ensuring efficient and effective
                             resolution of legal matters.
                         </p>
@@ -46,8 +46,8 @@ const BlogPostContent = async ({ id }) => {
                         <p>Strategic Advocacy with a Results-Driven Mindset</p>
                         <br />
                         <p>
-                            An experienced legal team doesn't just offer advice—it advocates for clients with determination and strategic
-                            precision. Whether in negotiations or the courtroom, lawyers who are dedicated to their clients' success work
+                            An experienced legal team doesn&apos;t just offer advice—it advocates for clients with determination and strategic
+                            precision. Whether in negotiations or the courtroom, lawyers who are dedicated to their clients&apos; success work
                             relentlessly to achieve favorable outcomes. With in-depth legal knowledge and an unwavering commitment to
                             justice, they provide the representation clients need.
                         </p>
@@ -87,7 +87,7 @@ export default function BlogPost({ params }) {
 
     return (
         <section className="flex flex-col">
-            <Heading type="h2" className="md:text-start text-center">
+            <Heading type="h2" className="text-center md:text-start">
                 Blog
             </Heading>
 

@@ -39,7 +39,7 @@ export default function ContactForm() {
 
           <div className="relative z-10">
             <p className="mb-8 text-lg">
-              Need help? Just fill in the form, and we'll contact you soon!
+              Need help? Just fill in the form, and we&apos;ll contact you soon!
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
