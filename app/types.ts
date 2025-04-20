@@ -293,6 +293,11 @@ export type GroupedResult = Record<
 
 export type ClientData = PrismaClientData;
 
+type statBlockObj = {
+  total: number;
+  text: string;
+};
+
 export interface WebsiteData {
   id: number;
   clientId: number;
@@ -322,7 +327,7 @@ export interface WebsiteData {
     };
     statBlock?: {
       title: string;
-      items: string[];
+      items: statBlockObj[];
     };
     whyChooseBlock?: {
       title: string;

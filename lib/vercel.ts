@@ -144,12 +144,13 @@ class VercelSDK {
   }
 }
 
-export default new VercelSDK(
-  process.env.VERCEL_TOKEN!,
-  process.env.VERCEL_TEAM_ID!
-);
-
 type DeploymentOptions = {
   repositoryUrl: string;
   projectName: string;
 };
+
+const vercelSDK = new VercelSDK(
+  process.env.VERCEL_TOKEN!,
+  process.env.VERCEL_TEAM_ID!
+);
+export default vercelSDK;

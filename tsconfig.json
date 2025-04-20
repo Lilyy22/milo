@@ -35,7 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "elitetemplate/src/components/ui/card.jsx", "elitetemplate/src/components/ui/button.jsx"  ],
   "exclude": [
     "node_modules"
   ]

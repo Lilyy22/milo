@@ -385,4 +385,6 @@ type CheckFileNeedsUpdateParams = {
   filePath: string;
   newContent: string;
 };
-export default new GitHubClient(process.env.GITHUB_TOKEN);
+
+const gitHubClient = new GitHubClient(process.env.GITHUB_TOKEN);
+export default gitHubClient;

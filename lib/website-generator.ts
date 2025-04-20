@@ -243,4 +243,5 @@ class WebsiteGenerator {
   }
 }
 
-export default new WebsiteGenerator();
+const websiteGenerator = new WebsiteGenerator();
+export default websiteGenerator;
